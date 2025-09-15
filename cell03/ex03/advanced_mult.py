@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 import sys
-try:
+if len(sys.argv) == 2 and sys.argv[1] == "yolo":
+    print("none")
+elif len(sys.argv) == 1:
     i = 0
     j = 0
     while i <= 10:
@@ -11,5 +13,3 @@ try:
         print()
         j = 0
         i += 1
-except (IndexError, ValueError):
-    print("none")
