@@ -8,7 +8,6 @@ def checkmate(board_raw):
             
             straight_dir = [(1,0), (-1,0), (0,1), (0,-1)]
             diag_dir = [(1,1), (1,-1), (-1,1), (-1,-1)]
-            queen_dirs = [(1,1), (1,-1), (-1,1), (-1,-1), (1,0), (-1,0), (0,1), (0,-1)]
             pawns_dir = [(-1,-1),(-1,1)]
             
             for i, row in enumerate(board):
@@ -29,7 +28,7 @@ def checkmate(board_raw):
                             print("Fail by R\n")
                             return
                     elif col == "Q":
-                        if isFoundKingFirst((i, j), straight_dir + diag_dir, board, "Q"):
+                        if isFoundKingFirst((i, j), straight_dir + diag_dir, board):
                             display(board)
                             print("Fail by Q\n")
                             return
@@ -64,13 +63,6 @@ def isBoardValid(board):
                 return 0
         
     return 0 if k_count > 1 or k_count == 0 else 1
-
-# def findPos(piece, board):
-#     for i, row in enumerate(board):
-#         for j, col in enumerate(row):
-#             if col == piece:
-#                 return (i, j)
-#     return None
     
 def isFoundKingFirst(piece_pos, piece_dirs, board, piece = ""):
     if piece_pos is None:
