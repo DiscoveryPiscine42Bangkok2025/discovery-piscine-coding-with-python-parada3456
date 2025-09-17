@@ -8,27 +8,27 @@ def checkmate(board_raw):
             
             straight_dir = [(1,0), (-1,0), (0,1), (0,-1)]
             diag_dir = [(1,1), (1,-1), (-1,1), (-1,-1)]
-            pawns_dir = [(1,-1), (1,1)]
+            pawns_dir = [(-1,-1),(1,-1)]
             
             for i, row in enumerate(board):
                 for j, col in enumerate(row):
                     if col == "P":
-                        if isFoundKingFirst((i, j), pawns_dir, board):
+                        if isFoundKingFirst((i, j), pawns_dir, board, col):
                             display(board)
                             print("Fail by P\n")
                             return
                     elif col == "B":
-                        if isFoundKingFirst((i, j), diag_dir, board):
+                        if isFoundKingFirst((i, j), diag_dir, board, col):
                             display(board)
                             print("Fail by B\n")
                             return
                     elif col == "R":
-                        if isFoundKingFirst((i, j), straight_dir, board):
+                        if isFoundKingFirst((i, j), straight_dir, board, col):
                             display(board)
                             print("Fail by R\n")
                             return
                     elif col == "Q":
-                        if isFoundKingFirst((i, j), straight_dir + diag_dir, board):
+                        if isFoundKingFirst((i, j), straight_dir + diag_dir, board, col):
                             display(board)
                             print("Fail by Q\n")
                             return
@@ -71,7 +71,7 @@ def isBoardValid(board):
 #                 return (i, j)
 #     return None
     
-def isFoundKingFirst(piece_pos, piece_dirs, board):
+def isFoundKingFirst(piece_pos, piece_dirs, board, piece):
     if piece_pos is None:
         return False
     
@@ -82,11 +82,12 @@ def isFoundKingFirst(piece_pos, piece_dirs, board):
         r, c = start_r + dr, start_c + dc
         while 0 <= r < size and 0 <= c < size:
             cell = board[r][c]
-            if cell != ".":
-                if cell == 'K':
+            if cell in '.*':
+                board[r][c] = "*"
+            elif cell == 'K':
                     return True   
-                else:
-                    return False  
+            else:
+                return False 
             r += dr
             c += dc
     return False 
