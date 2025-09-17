@@ -51,10 +51,10 @@ def checkmate(board_raw):
 
 def isBoardValid(board):
     k_count = 0
-    if len(board) > 8 :
+    if 1 <= len(board) > 8 :
         return 0
     for row in board:
-        if len(row) != len(board) or len(row) > 8:
+        if len(row) != len(board) or 1 <= len(row) > 8:
             return 0
         for col in row:
             if col == 'K':
