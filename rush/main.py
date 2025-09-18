@@ -73,6 +73,15 @@ R...
     checkmate(board)
 
     board = """\
+....K
+.....
+..Q..
+..R..
+.....\
+"""
+    checkmate(board)
+
+    board = """\
 R...B..Q
 .P......
 ........
