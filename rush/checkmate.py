@@ -5,6 +5,7 @@ def checkmate(board_raw):
         board = [list(row) for row in board_raw.split("\n")]
         if(isBoardValid(board)):         
             
+            # (row, col)
             straight_dir = [(1,0), (-1,0), (0,1), (0,-1)]
             diag_dir = [(1,1), (1,-1), (-1,1), (-1,-1)]
             pawns_dir = [(-1,-1),(-1,1)]
