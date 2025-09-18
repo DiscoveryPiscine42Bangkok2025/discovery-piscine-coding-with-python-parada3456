@@ -12,22 +12,22 @@ def checkmate(board_raw):
             for i, row in enumerate(board):
                 for j, col in enumerate(row):
                     if col == "P":
-                        if isFoundKingFirst((i, j), pawns_dir, board, "P"):
+                        if isFoundKing((i, j), pawns_dir, board, "P"):
                             # display(board)
                             print("Success")
                             return
                     elif col == "B":
-                        if isFoundKingFirst((i, j), diag_dir, board):
+                        if isFoundKing((i, j), diag_dir, board):
                             # display(board)
                             print("Success")
                             return
                     elif col == "R":
-                        if isFoundKingFirst((i, j), straight_dir, board):
+                        if isFoundKing((i, j), straight_dir, board):
                             display(board)
                             print("Success")
                             return
                     elif col == "Q":
-                        if isFoundKingFirst((i, j), straight_dir + diag_dir, board):
+                        if isFoundKing((i, j), straight_dir + diag_dir, board):
                             # display(board)
                             print("Success")
                             return
@@ -63,7 +63,7 @@ def isBoardValid(board):
         
     return 0 if k_count > 1 or k_count == 0 else 1
     
-def isFoundKingFirst(piece_pos, piece_dirs, board, piece = ""):
+def isFoundKing(piece_pos, piece_dirs, board, piece = ""):
     if piece_pos is None:
         return False
     
