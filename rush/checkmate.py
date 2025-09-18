@@ -2,7 +2,6 @@
 def checkmate(board_raw):
     try:
         
-        # board = [list(r) for r in rows]
         board = [list(row) for row in board_raw.strip().split("\n")]
         if(isBoardValid(board)):         
             
@@ -14,47 +13,47 @@ def checkmate(board_raw):
                 for j, col in enumerate(row):
                     if col == "P":
                         if isFoundKingFirst((i, j), pawns_dir, board, "P"):
-                            display(board)
-                            print("Success by P\n")
+                            # display(board)
+                            print("Success")
                             return
                     elif col == "B":
                         if isFoundKingFirst((i, j), diag_dir, board):
-                            display(board)
-                            print("Success by B\n")
+                            # display(board)
+                            print("Success")
                             return
                     elif col == "R":
                         if isFoundKingFirst((i, j), straight_dir, board):
                             display(board)
-                            print("Success by R\n")
+                            print("Success")
                             return
                     elif col == "Q":
                         if isFoundKingFirst((i, j), straight_dir + diag_dir, board):
-                            display(board)
-                            print("Success by Q\n")
+                            # display(board)
+                            print("Success")
                             return
                     else:
                         continue
 
-            display(board)
-            print("Fail\n")
+            # display(board)
+            print("Fail")
             return
         
-        display(board)
-        print("Error: board not valid\n")
+        # display(board)
+        print("Error: board not valid")
         return
 
     except Exception as e:
-        display(board)
-        print(f"Error: {e}\n")
+        # display(board)
+        print(f"Error: {e}")
         return
     
 
 def isBoardValid(board):
     k_count = 0
-    if 1 <= len(board) > 8 :
+    if 1 < len(board) > 8 :
         return 0
     for row in board:
-        if len(row) != len(board) or 1 <= len(row) > 8:
+        if len(row) != len(board) or 1 < len(row) > 8:
             return 0
         for col in row:
             if col == 'K':
@@ -74,7 +73,6 @@ def isFoundKingFirst(piece_pos, piece_dirs, board, piece = ""):
 
     for dr, dc in piece_dirs:
         r, c = start_r + dr, start_c + dc
-        distance = 0
         while 0 <= r < size and 0 <= c < size:
             cell = board[r][c] 
             if cell in ".*":
