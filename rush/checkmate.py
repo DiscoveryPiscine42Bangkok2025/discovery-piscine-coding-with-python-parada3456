@@ -2,7 +2,7 @@
 def checkmate(board_raw):
     try:
         
-        board = [list(row) for row in board_raw.strip().split("\n")]
+        board = [list(row) for row in board_raw.split("\n")]
         if(isBoardValid(board)):         
             
             straight_dir = [(1,0), (-1,0), (0,1), (0,-1)]
