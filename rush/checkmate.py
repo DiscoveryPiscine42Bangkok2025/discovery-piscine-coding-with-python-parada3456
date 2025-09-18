@@ -15,28 +15,28 @@ def checkmate(board_raw):
                     if col == "P":
                         if isFoundKingFirst((i, j), pawns_dir, board, "P"):
                             display(board)
-                            print("Fail by P\n")
+                            print("Success by P\n")
                             return
                     elif col == "B":
                         if isFoundKingFirst((i, j), diag_dir, board):
                             display(board)
-                            print("Fail by B\n")
+                            print("Success by B\n")
                             return
                     elif col == "R":
                         if isFoundKingFirst((i, j), straight_dir, board):
                             display(board)
-                            print("Fail by R\n")
+                            print("Success by R\n")
                             return
                     elif col == "Q":
                         if isFoundKingFirst((i, j), straight_dir + diag_dir, board):
                             display(board)
-                            print("Fail by Q\n")
+                            print("Success by Q\n")
                             return
                     else:
                         continue
 
             display(board)
-            print("Success\n")
+            print("Fail\n")
             return
         
         display(board)
@@ -72,8 +72,6 @@ def isFoundKingFirst(piece_pos, piece_dirs, board, piece = ""):
 
     size = len(board)
 
-    dict_found = {"P":9, "B":9, "R":9, "Q":9,"K":9}
-
     for dr, dc in piece_dirs:
         r, c = start_r + dr, start_c + dc
         distance = 0
@@ -83,23 +81,18 @@ def isFoundKingFirst(piece_pos, piece_dirs, board, piece = ""):
                 board[r][c] = "*"
                     
             elif cell == 'K':
-                dict_found["K"] = distance
-
-            else:
-                if distance < dict_found[cell]:
-                    dict_found[cell] = distance
+                return True
+            
+            else :
+                break
             
             if piece == "P":
                 break
 
             r += dr
             c += dc
-            distance += 1
 
-    if min(dict_found, key=dict_found.get) == "K" and min(dict_found.values()) != 9:
-        return True
-    else:
-        return False 
+    return False 
 
 def display(board):
     for row in board:
