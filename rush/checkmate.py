@@ -10,6 +10,7 @@ def checkmate(board_raw):
             diag_dir = [(1,1), (1,-1), (-1,1), (-1,-1)]
             pawns_dir = [(-1,-1),(-1,1)]
             
+            # index, value
             for i, row in enumerate(board):
                 for j, col in enumerate(row):
                     if col == "P":
